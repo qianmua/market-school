@@ -1,4 +1,4 @@
-package pres.hjc.market.common;
+package pres.hjc.market.po;
 
 import lombok.Data;
 
@@ -6,16 +6,15 @@ import lombok.Data;
  * @author HJC
  * @version 1.0
  * 谦谦君子 卑以自牧也
- * @date 2020/6/20  13:24
- * @description : 角色
+ * @date 2020/6/20  13:25
+ * @description : 权限
  */
 @Data
-public class RoleModel {
+public class AuthModel {
 
+    private Long aid;
+    private String aName;
     private Long rid;
-    private String rName;
-    private Long uid;
-
 
     private String createDate;
     private String updateDate;

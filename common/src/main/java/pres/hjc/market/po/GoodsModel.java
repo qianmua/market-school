@@ -1,4 +1,4 @@
-package pres.hjc.market.common;
+package pres.hjc.market.po;
 
 import lombok.Data;
 

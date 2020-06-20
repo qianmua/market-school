@@ -7,5 +7,5 @@ package pers.hjc.market.mapper;
  * @date 2020/6/20  13:43
  * @description :
  */
-public interface UserMapping extends {
+public interface UserMapping {
 }

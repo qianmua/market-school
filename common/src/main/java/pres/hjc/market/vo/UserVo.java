@@ -1,16 +1,24 @@
-package pres.hjc.market.common;
+package pres.hjc.market.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * @author HJC
  * @version 1.0
  * 谦谦君子 卑以自牧也
- * @date 2020/6/20  13:17
- * @description : 用户
+ * @date 2020/6/20  15:49
+ * @description :
  */
 @Data
-public class UsersModel {
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class UserVo {
 
     private Long uid;
     private String userName;
@@ -19,7 +27,6 @@ public class UsersModel {
     private String tel;
     private String email;
 
-
     private String createDate;
     private String updateDate;
     private Long createId;
@@ -27,6 +34,5 @@ public class UsersModel {
 
     private Integer status;
 
-
-
+    private List<RoleVo> role;
 }
