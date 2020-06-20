@@ -8,4 +8,6 @@ package pres.hjc.market.service;
  * @description :
  */
 public interface UserService {
+
+    void deleteUser(Long id);
 }

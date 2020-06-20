@@ -1,6 +1,7 @@
-package pers.hjc.market.mapper;
+package pres.hjc.market.mapper;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import pres.hjc.market.po.UsersModel;
 
 /**
@@ -10,5 +11,6 @@ import pres.hjc.market.po.UsersModel;
  * @date 2020/6/20  13:43
  * @description :
  */
+@Repository
 public interface UserMapping extends JpaRepository<UsersModel, Long> {
 }

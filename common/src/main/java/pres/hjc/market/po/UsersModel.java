@@ -36,6 +36,7 @@ public class UsersModel {
     private String tel;
     private String email;
 
+    private Long rid;
 
     private String createDate;
     private String updateDate;

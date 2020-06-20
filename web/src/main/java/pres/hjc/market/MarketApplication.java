@@ -1,4 +1,4 @@
-package pres.hjc.maket;
+package pres.hjc.market;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020/6/20  13:39
  * @description :
  */
-@SpringBootApplication
+@SpringBootApplication( scanBasePackages = {"pres.hjc.market"})
 public class MarketApplication {
 
     public static void main(String[] args) {

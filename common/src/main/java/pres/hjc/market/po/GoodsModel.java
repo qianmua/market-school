@@ -1,6 +1,14 @@
 package pres.hjc.market.po;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author HJC
@@ -10,13 +18,20 @@ import lombok.Data;
  * @description : 物品
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity
+@Table( name = "goods")
 public class GoodsModel {
 
+    @Id
+    @GeneratedValue
     private Long gid;
     private String gName;
     private String gPrice;
     /** 描述 */
-    private String desc;
+    private String describe;
     private Integer hot;
     private String url;
 

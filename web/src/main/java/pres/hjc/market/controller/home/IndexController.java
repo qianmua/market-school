@@ -1,4 +1,4 @@
-package pres.hjc.maket.controller.home;
+package pres.hjc.market.controller.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

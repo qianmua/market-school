@@ -1,4 +1,4 @@
-package pers.hjc.market.mapper;
+package pres.hjc.market.mapper;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import pres.hjc.market.po.AuthModel;
