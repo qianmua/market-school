@@ -15,8 +15,8 @@ import pres.hjc.market.service.TipsService;
  * @description :
  */
 @RestController
-@RequestMapping("admin/tips")
-public class TipsController {
+@RequestMapping("/admin/tips")
+public class AdminTipsController {
 
     @Autowired
     private TipsService tipsService;
@@ -24,7 +24,7 @@ public class TipsController {
     @GetMapping("/save")
     public String save(){
         TipsModel tipsModel = new TipsModel();
-        tipsModel.setTName("666");
+        tipsModel.setTName("777777");
         tipsService.addTips(tipsModel);
 
         return "SUCCESS";

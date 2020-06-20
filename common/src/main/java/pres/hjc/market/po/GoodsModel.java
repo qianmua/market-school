@@ -31,9 +31,11 @@ public class GoodsModel {
     private String gName;
     private String gPrice;
     /** 描述 */
-    private String describe;
+    /** 不要使用 desc describe 关键字 */
+    private String describes;
     private Integer hot;
-    private String url;
+    /** 不要使用url 关键字 */
+    private String imgUrl;
 
     private Long uid;
     private Long tid;

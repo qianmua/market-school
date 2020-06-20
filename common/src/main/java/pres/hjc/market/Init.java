@@ -1,5 +1,7 @@
 package pres.hjc.market;
 
+import sun.security.provider.MD5;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,4 +35,5 @@ public class Init {
 
 
     }*/
+
 }

@@ -17,7 +17,7 @@ public interface TipsService {
      * query all
      * @return list
      */
-    List<TipsModel> queryAll();
+    List<TipsModel> queryTips();
 
     /**
      * add
