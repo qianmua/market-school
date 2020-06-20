@@ -11,12 +11,12 @@ import lombok.experimental.Accessors;
  * @version 1.0
  * 谦谦君子 卑以自牧也
  * @date 2020/6/20  12:55
- * @description :
+ * @description : 响应数据
  */
 @ToString
 @NoArgsConstructor
 @Accessors( chain = true)
-public class Common<T> {
+public class CommonMsg<T> {
 
     /**
      * 状态码
@@ -44,7 +44,7 @@ public class Common<T> {
      * @param code
      * @param message
      */
-    public Common(Integer code , String message){
+    public CommonMsg(Integer code , String message){
         this(code , message , null);
     }
 
@@ -54,7 +54,7 @@ public class Common<T> {
      * @param message
      * @param data
      */
-    public Common(Integer code, String message, T data) {
+    public CommonMsg(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
