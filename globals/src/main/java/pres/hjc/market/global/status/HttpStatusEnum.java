@@ -1,13 +1,13 @@
-package pres.hjc.market.global;
+package pres.hjc.market.global.status;
 
 /**
  * @author HJC
  * @version 1.0
  * 谦谦君子 卑以自牧也
  * @date 2020/6/20  12:59
- * @description :
+ * @description : http status
  */
-public enum StatusEnum {
+public enum HttpStatusEnum {
     /**
      * not found
      */
@@ -24,13 +24,17 @@ public enum StatusEnum {
      * auth not found
      */
     NO_AUTH(403),
+    /**
+     * 未登录
+     */
+    NO_LOGIN(401),
     ;
 
 
 
     private Integer status;
 
-    StatusEnum(Integer status) {
+    HttpStatusEnum(Integer status) {
         this.status = status;
     }
 }

@@ -11,6 +11,11 @@ spring:
     url: jdbc:mysql://localhost:3306/market?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2B8
     password: 123456
     username: root
+    druid:
+      max-active: 20
+      max-wait: 10000
+      min-idle: 5
+      filters: log4j
 
   jpa:
     hibernate:

@@ -33,6 +33,9 @@ public class UsersModel {
     @Column( nullable = false , length = 20)
     private String password;
     private String realName;
+    private String nickName;
+    private String headImgUrl;
+    private String birthday;
     private String tel;
     private String email;
 
