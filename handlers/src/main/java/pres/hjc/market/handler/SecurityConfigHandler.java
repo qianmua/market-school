@@ -86,11 +86,11 @@ public class SecurityConfigHandler {
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler(){
         return (req,res,authentication)-> {
+            // 编辑信息
 
             // 退出成功 清理 token
             // 返回状态码
-
-            ResponseTools.responseJson(res,HttpStatus.OK.value() , "login");
+            ResponseTools.responseJson(res,HttpStatus.OK.value() , "退出成功");
 
         };
     }
