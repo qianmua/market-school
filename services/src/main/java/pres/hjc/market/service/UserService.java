@@ -1,5 +1,7 @@
 package pres.hjc.market.service;
 
+import pres.hjc.market.po.UsersModel;
+
 /**
  * @author HJC
  * @version 1.0
@@ -10,4 +12,6 @@ package pres.hjc.market.service;
 public interface UserService {
 
     void deleteUser(Long id);
+
+    UsersModel queryByUserName(String userName);
 }

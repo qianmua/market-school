@@ -17,4 +17,21 @@ public interface CommonService<T> {
      */
     CommonMsg<T> queryAll();
 
+    /**
+     * query by id
+     * @param id
+     * @return
+     */
+    CommonMsg<T> queryById(Long id);
+
+    /**
+     * query by Name
+     * @param name
+     * @return
+     */
+    CommonMsg<T> queryByName(String name);
+
+
+
+
 }

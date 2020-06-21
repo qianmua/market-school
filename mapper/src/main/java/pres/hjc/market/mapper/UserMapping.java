@@ -13,4 +13,11 @@ import pres.hjc.market.po.UsersModel;
  */
 @Repository
 public interface UserMapping extends JpaRepository<UsersModel, Long> {
+
+    /**
+     * query by user name
+     * @param userName name
+     * @return users
+     */
+    UsersModel queryByUserName(String userName);
 }

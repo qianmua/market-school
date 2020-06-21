@@ -30,7 +30,7 @@ public class UsersModel {
     private Long uid;
     @Column( nullable = false , unique = true ,length = 36)
     private String userName;
-    @Column( nullable = false , length = 20)
+    @Column( nullable = false , length = 50)
     private String password;
     private String realName;
     private String nickName;

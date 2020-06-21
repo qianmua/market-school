@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import pres.hjc.market.global.global.SecurityVal;
 
@@ -27,14 +28,17 @@ import pres.hjc.market.global.global.SecurityVal;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private AuthenticationSuccessHandler successHandler;
-    @Autowired
-    private AuthenticationFailureHandler failureHandler;
-    @Autowired
-    private AuthenticationEntryPoint entryPoint;
-    @Autowired
-    private LogoutSuccessHandler logoutSuccessHandler;
+    private final AuthenticationSuccessHandler successHandler;
+    private final AuthenticationFailureHandler failureHandler;
+    private final AuthenticationEntryPoint entryPoint;
+    private final LogoutSuccessHandler logoutSuccessHandler;
+
+    public SecurityConfig(AuthenticationSuccessHandler successHandler, AuthenticationFailureHandler failureHandler, AuthenticationEntryPoint entryPoint, LogoutSuccessHandler logoutSuccessHandler) {
+        this.successHandler = successHandler;
+        this.failureHandler = failureHandler;
+        this.entryPoint = entryPoint;
+        this.logoutSuccessHandler = logoutSuccessHandler;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -68,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 拦截 请求 得到token
         // 对token 校验
+        http.addFilterBefore(null , UsernamePasswordAuthenticationFilter.class);
     }
 
     /**

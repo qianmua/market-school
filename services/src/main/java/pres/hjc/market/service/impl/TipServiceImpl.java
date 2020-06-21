@@ -27,4 +27,14 @@ public class TipServiceImpl<T> implements CommonService<T> {
         return new CommonProcess().commonMessageFactoryProcess(tipsMapping.findAll());
     }
 
+    @Override
+    public CommonMsg<T> queryById(Long id) {
+        return null;
+    }
+
+    @Override
+    public CommonMsg<T> queryByName(String name) {
+        return null;
+    }
+
 }

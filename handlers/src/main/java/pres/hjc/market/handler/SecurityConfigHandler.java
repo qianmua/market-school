@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import pres.hjc.market.global.tools.ResponseTools;
+import pres.hjc.market.impl.UserDetail;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -40,8 +41,9 @@ public class SecurityConfigHandler {
     public AuthenticationSuccessHandler successHandler(){
         return (httpServletRequest, httpServletResponse, authentication) -> {
             //user
-            Object details = authentication.getDetails();
+            UserDetail details = (UserDetail) authentication.getDetails();
 
+            // 根据user 生成token
             Token token = null;
             ResponseTools.responseJson(httpServletResponse, HttpStatus.OK.value() , token);
 
