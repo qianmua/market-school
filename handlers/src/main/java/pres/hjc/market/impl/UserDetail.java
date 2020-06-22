@@ -25,19 +25,30 @@ public class UserDetail extends UsersModel implements UserDetails {
 
     private static final long serialVersionUID = 3841374973282074196L;
 
-
+    /**
+     * token
+     */
     @Getter
     @Setter
     private String token;
 
+    /**
+     * 登录时间戳
+     */
     @Getter
     @Setter
     private Long loginLong;
 
+    /**
+     * 时间戳
+     */
     @Getter
     @Setter
     private Long expireTime;
 
+    /**
+     * 权限列
+     */
     @Getter
     @Setter
     private List<MenuModel> menuModels;

@@ -24,6 +24,10 @@ public class TipServiceImpl<T> implements CommonService<T> {
 
     @Override
     public CommonMsg<T> queryAll() {
+        if (1 ==1){
+            // demo
+            throw new IllegalArgumentException("用户名不存在");
+        }
         return new CommonProcess().commonMessageFactoryProcess(tipsMapping.findAll());
     }
 

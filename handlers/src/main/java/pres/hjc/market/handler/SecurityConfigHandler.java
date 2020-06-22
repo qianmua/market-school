@@ -13,6 +13,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import pres.hjc.market.common.CommonMsg;
 import pres.hjc.market.global.tools.ResponseTools;
 import pres.hjc.market.impl.UserDetail;
 
@@ -30,8 +31,6 @@ import java.io.IOException;
  */
 @Configuration
 public class SecurityConfigHandler {
-//    @Autowired
-//    private TokenService tokenService;
 
     /**
      * 登录成功 返回token
@@ -65,8 +64,10 @@ public class SecurityConfigHandler {
             }
 
             // return info
+            CommonMsg commonMsg = new CommonMsg();
+            commonMsg.setMessage(msg).setCode(HttpStatus.UNAUTHORIZED.value());
 
-            ResponseTools.responseJson(httpServletResponse,HttpStatus.UNAUTHORIZED.value() , msg);
+            ResponseTools.responseJson(httpServletResponse,HttpStatus.UNAUTHORIZED.value() , commonMsg);
         };
     }
 
@@ -80,19 +81,27 @@ public class SecurityConfigHandler {
 
             // 401
             // return info
-            ResponseTools.responseJson(res,HttpStatus.UNAUTHORIZED.value() , "login");
+            CommonMsg commonMsg = new CommonMsg();
+            commonMsg.setMessage("请登录").setCode(HttpStatus.UNAUTHORIZED.value());
+
+            ResponseTools.responseJson(res,HttpStatus.UNAUTHORIZED.value() , commonMsg);
 
         };
     }
 
+    /**
+     * 退出 登录
+     * @return
+     */
     @Bean
     public LogoutSuccessHandler logoutSuccessHandler(){
         return (req,res,authentication)-> {
             // 编辑信息
-
+            CommonMsg commonMsg = new CommonMsg();
+            commonMsg.setMessage("退出成功").setCode(HttpStatus.OK.value());
             // 退出成功 清理 token
             // 返回状态码
-            ResponseTools.responseJson(res,HttpStatus.OK.value() , "退出成功");
+            ResponseTools.responseJson(res,HttpStatus.OK.value() , commonMsg);
 
         };
     }

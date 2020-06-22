@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 /**
  * @author HJC
  * @version 1.0
@@ -16,8 +18,9 @@ import lombok.experimental.Accessors;
 @ToString
 @NoArgsConstructor
 @Accessors( chain = true)
-public class CommonMsg<T> {
+public class CommonMsg<T> implements Serializable {
 
+    private static final long serialVersionUID = -5968831716928343429L;
     /**
      * 状态码
      */

@@ -14,7 +14,7 @@ public class CommonProcess<T> {
     public CommonMsg<T> commonMessageFactoryProcess(T data){
         CommonMsg<T> msg = new CommonMsg<>();
         msg.setCode(200)
-                .setMessage("SUCCESS")
+                .setMessage("")
                 .setData(data);
 
         return msg;

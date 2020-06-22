@@ -32,7 +32,6 @@ public class TipsServiceImpl implements TipsService {
 
     @Override
     public void addTips(TipsModel tipsModel) {
-
         tipsMapping.save(tipsModel);
     }
 

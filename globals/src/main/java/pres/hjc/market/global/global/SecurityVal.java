@@ -10,6 +10,7 @@ package pres.hjc.market.global.global;
 public class SecurityVal {
 
     public static String[] antMatchers = new String[]{
+            "/home/**",
       "/" , "/css/**" , "/favicon.ico" , "js/**" , "/fonts/**",
             "lib/**","img/**","swagger-resources/**","pages/**","/druid/**",
             "static/**"

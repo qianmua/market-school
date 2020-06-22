@@ -10,7 +10,7 @@ import java.io.IOException;
  * @version 1.0
  * 谦谦君子 卑以自牧也
  * @date 2020/6/21  15:14
- * @description :
+ * @description : 响应 信息 通过 response 封装 一个 Common
  */
 public class ResponseTools {
 
