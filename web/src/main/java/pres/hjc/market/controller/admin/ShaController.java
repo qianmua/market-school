@@ -1,5 +1,6 @@
 package pres.hjc.market.controller.admin;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,12 @@ import pres.hjc.market.global.SHAUtil;
 @RequestMapping("/admin/md5")
 public class ShaController {
 
+    /**
+     * get page
+     * @return view
+     */
     @GetMapping("/page")
+    @PreAuthorize("hasAuthority('sys:url:create')")
     public String getPage(){
 
         //admin/md5/pages
@@ -29,6 +35,7 @@ public class ShaController {
 
 
     @PostMapping("/pages")
+    @PreAuthorize("hasAuthority('sys:url:create')")
     public String md(String md , Model model){
         String str = SHAUtil.encreptUrl(md);
         model.addAttribute("origin" , md);

@@ -45,7 +45,7 @@ public class UserDetail extends UsersModel implements UserDetails {
 
     /**
      * 得到权限
-     * @return
+     * @return set
      */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

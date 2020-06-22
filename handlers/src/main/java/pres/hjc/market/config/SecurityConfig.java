@@ -28,17 +28,15 @@ import pres.hjc.market.global.global.SecurityVal;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final AuthenticationSuccessHandler successHandler;
-    private final AuthenticationFailureHandler failureHandler;
-    private final AuthenticationEntryPoint entryPoint;
-    private final LogoutSuccessHandler logoutSuccessHandler;
+    @Autowired
+    private AuthenticationSuccessHandler successHandler;
+    @Autowired
+    private AuthenticationFailureHandler failureHandler;
+    @Autowired
+    private AuthenticationEntryPoint entryPoint;
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
 
-    public SecurityConfig(AuthenticationSuccessHandler successHandler, AuthenticationFailureHandler failureHandler, AuthenticationEntryPoint entryPoint, LogoutSuccessHandler logoutSuccessHandler) {
-        this.successHandler = successHandler;
-        this.failureHandler = failureHandler;
-        this.entryPoint = entryPoint;
-        this.logoutSuccessHandler = logoutSuccessHandler;
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -72,17 +70,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 拦截 请求 得到token
         // 对token 校验
-        http.addFilterBefore(null , UsernamePasswordAuthenticationFilter.class);
+//        http.addFilterBefore(null , UsernamePasswordAuthenticationFilter.class);
     }
 
     /**
      * token 生成
      * @return token service
      */
-    @Bean
+    /*@Bean
     public KeyBasedPersistenceTokenService tokenService(){
         return new KeyBasedPersistenceTokenService();
-    }
+    }*/
 
 
     /**

@@ -30,8 +30,8 @@ import java.io.IOException;
  */
 @Configuration
 public class SecurityConfigHandler {
-    @Autowired
-    private TokenService tokenService;
+//    @Autowired
+//    private TokenService tokenService;
 
     /**
      * 登录成功 返回token
