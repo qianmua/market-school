@@ -1,29 +1,43 @@
 package pres.hjc.market.impl;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import pres.hjc.market.dto.Token;
 import pres.hjc.market.service.TokenService;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
  * @author HJC
  * @version 1.0
  * 谦谦君子 卑以自牧也
- * @date 2020/6/22  16:53
- * @description : token save to redis
+ * @date 2020/6/22  19:31
+ * @description :
  */
-@Slf4j
 @Service
-public class TokenServiceImpl implements TokenService {
+@Primary
+@Slf4j
+public class TokenJWTServiceImpl implements TokenService {
 
     /**
      * token 过期 (秒)
      */
     @Value("${token.expire.seconds}")
     private Integer expireSeconds;
+    /**
+     * 私钥
+     */
+    @Value("${token.jwt.secret}")
+    private String jwtSecret;
+
+
+    private static final String USER_LOGIN_KEY = "LOGIN_KEY";
+//    private static Key
 
     @Override
     public Token saveToken(UserDetail userDetail) {
@@ -34,12 +48,16 @@ public class TokenServiceImpl implements TokenService {
 
         cacheUserSetting(userDetail);
 
+        //生成 jwt token
+        String jwtToken = createJwtToken(userDetail);
+
+
         // 缓存token 到 redis 1
 
         log.info("login -> to save token");
 
 
-        return new Token(token,userDetail.getLoginLong());
+        return new Token(jwtToken,userDetail.getLoginLong());
     }
 
     @Override
@@ -82,5 +100,17 @@ public class TokenServiceImpl implements TokenService {
      */
     private String getToken(String token){
         return "token:" + token;
+    }
+
+    private String createJwtToken(UserDetail userDetail){
+        HashMap<String, Object> map = new HashMap<>(2);
+
+        // 标识
+        map.put(USER_LOGIN_KEY , userDetail.getToken());
+
+        // jwt token
+        String compact = Jwts.builder().setClaims(map).signWith(SignatureAlgorithm.HS256, "").compact();
+
+        return compact;
     }
 }

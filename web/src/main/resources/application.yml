@@ -27,3 +27,5 @@ spring:
 token:
   expire:
     seconds: 7200
+  jwt:
+    secret: ($%^FGH3J)_(DFCT12VGYB%&)_^_^_&@#$%^&hjvbsdauij&_(###)

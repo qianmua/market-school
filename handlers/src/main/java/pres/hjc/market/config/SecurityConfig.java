@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import pres.hjc.market.filter.TokenFilter;
 import pres.hjc.market.global.global.SecurityVal;
 
 /**
@@ -36,6 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationEntryPoint entryPoint;
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
+    @Autowired
+    private TokenFilter tokenFilter;
 
 
     @Override
@@ -70,7 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 拦截 请求 得到token
         // 对token 校验
-//        http.addFilterBefore(null , UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(tokenFilter , UsernamePasswordAuthenticationFilter.class);
     }
 
     /**
