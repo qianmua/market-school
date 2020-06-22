@@ -40,7 +40,7 @@ public class UserDetail extends UsersModel implements UserDetails {
     private Long loginLong;
 
     /**
-     * 时间戳
+     * 过期时间戳
      */
     @Getter
     @Setter

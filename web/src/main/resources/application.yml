@@ -22,3 +22,8 @@ spring:
       ddl-auto: update
     database: mysql
     show-sql: true
+
+# token 过期时间 （俩小时）
+token:
+  expire:
+    seconds: 7200

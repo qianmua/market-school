@@ -1,26 +1,21 @@
 package pres.hjc.market.handler;
 
-import org.apache.tomcat.util.http.ResponseUtil;
+import com.fasterxml.jackson.core.filter.TokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.token.Token;
-import org.springframework.security.core.token.TokenService;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import pres.hjc.market.common.CommonMsg;
+import pres.hjc.market.dto.Token;
 import pres.hjc.market.global.tools.ResponseTools;
 import pres.hjc.market.impl.UserDetail;
+import pres.hjc.market.service.TokenService;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  * @author HJC
@@ -31,6 +26,9 @@ import java.io.IOException;
  */
 @Configuration
 public class SecurityConfigHandler {
+
+    @Autowired
+    private TokenService tokenService;
 
     /**
      * 登录成功 返回token
@@ -43,7 +41,8 @@ public class SecurityConfigHandler {
             UserDetail details = (UserDetail) authentication.getDetails();
 
             // 根据user 生成token
-            Token token = null;
+            Token token = tokenService.saveToken(details);
+
             ResponseTools.responseJson(httpServletResponse, HttpStatus.OK.value() , token);
 
         };
@@ -100,6 +99,8 @@ public class SecurityConfigHandler {
             CommonMsg commonMsg = new CommonMsg();
             commonMsg.setMessage("退出成功").setCode(HttpStatus.OK.value());
             // 退出成功 清理 token
+            // 从过滤器中 取出token
+            tokenService.removeToken("");
             // 返回状态码
             ResponseTools.responseJson(res,HttpStatus.OK.value() , commonMsg);
 
