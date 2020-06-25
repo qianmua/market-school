@@ -1,6 +1,5 @@
 package pres.hjc.market.handler;
 
-import com.fasterxml.jackson.core.filter.TokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +12,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import pres.hjc.market.common.CommonMsg;
 import pres.hjc.market.dto.Token;
 import pres.hjc.market.global.tools.ResponseTools;
-import pres.hjc.market.impl.UserDetail;
+import pres.hjc.market.dto.UserDetail;
 import pres.hjc.market.service.TokenService;
 
 
@@ -38,7 +37,7 @@ public class SecurityConfigHandler {
     public AuthenticationSuccessHandler successHandler(){
         return (httpServletRequest, httpServletResponse, authentication) -> {
             //user
-            UserDetail details = (UserDetail) authentication.getDetails();
+            UserDetail details = (UserDetail) authentication.getPrincipal();
 
             // 根据user 生成token
             Token token = tokenService.saveToken(details);

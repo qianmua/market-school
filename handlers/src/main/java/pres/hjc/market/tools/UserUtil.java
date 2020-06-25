@@ -2,7 +2,7 @@ package pres.hjc.market.tools;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import pres.hjc.market.impl.UserDetail;
+import pres.hjc.market.dto.UserDetail;
 
 /**
  * @author HJC

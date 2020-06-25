@@ -2,6 +2,7 @@ package pres.hjc.market;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author HJC
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description :
  */
 @SpringBootApplication( scanBasePackages = {"pres.hjc.market"})
+//@EnableTransactionManagement(proxyTargetClass = true)
 public class MarketApplication {
 
     public static void main(String[] args) {

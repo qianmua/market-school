@@ -1,4 +1,4 @@
-package pres.hjc.market.impl;
+package pres.hjc.market.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -89,7 +89,7 @@ public class UserDetail extends UsersModel implements UserDetails {
      */
     @Override
     public boolean isAccountNonLocked() {
-        return super.getStatus().equals(UserStatusEnum.LOCKDE.getStatus());
+        return true;
     }
 
     /**

@@ -1,7 +1,7 @@
 package pres.hjc.market.service;
 
 import pres.hjc.market.dto.Token;
-import pres.hjc.market.impl.UserDetail;
+import pres.hjc.market.dto.UserDetail;
 
 /**
  * @author HJC

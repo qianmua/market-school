@@ -6,7 +6,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-import pres.hjc.market.impl.UserDetail;
+import pres.hjc.market.dto.UserDetail;
 import pres.hjc.market.service.TokenService;
 
 import javax.servlet.FilterChain;

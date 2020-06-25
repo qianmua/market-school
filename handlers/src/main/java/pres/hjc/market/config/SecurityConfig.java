@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.token.KeyBasedPersistenceTokenService;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -38,7 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private LogoutSuccessHandler logoutSuccessHandler;
     @Autowired
-    private TokenFilter tokenFilter;
+    private UserDetailsService userDetailsService;
+//    @Autowired
+//    private TokenFilter tokenFilter;
 
 
     @Override
@@ -54,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 添加 handler
         http.formLogin()
-                .loginPage("/login.html")
+                .loginPage("/home/login.html")
                 .loginProcessingUrl("/login")
                 .successHandler(successHandler)
                 .failureHandler(failureHandler)
@@ -73,7 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 拦截 请求 得到token
         // 对token 校验
-        http.addFilterBefore(tokenFilter , UsernamePasswordAuthenticationFilter.class);
+//        http.addFilterBefore(tokenFilter , UsernamePasswordAuthenticationFilter.class);
     }
 
     /**
@@ -93,7 +96,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
     /**

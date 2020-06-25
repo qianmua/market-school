@@ -3,6 +3,8 @@ package pres.hjc.market.handler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -40,10 +42,33 @@ public class ExceptionHandlerAdvice {
      * @return json
      */
     @ExceptionHandler({AccessDeniedException.class})
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
     public CommonMsg badRequestException(AccessDeniedException ex){
         return new CommonMsg(HttpStatus.FORBIDDEN.value() , ex.getMessage());
     }
+
+    /**
+     * 账户锁定
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler({LockedException.class})
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public CommonMsg badRequestException(LockedException ex){
+        return new CommonMsg(HttpStatus.FORBIDDEN.value() , ex.getMessage());
+    }
+
+    /**
+     * 账户被注销
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler({DisabledException.class})
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public CommonMsg badRequestException(DisabledException ex){
+        return new CommonMsg(HttpStatus.FORBIDDEN.value() , ex.getMessage());
+    }
+
 
     /**
      * 运行错误

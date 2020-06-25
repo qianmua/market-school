@@ -55,7 +55,6 @@ public class MenuModel {
 
     private Integer sort;
 
-
     private String createDate;
     private String updateDate;
     private Long createId;

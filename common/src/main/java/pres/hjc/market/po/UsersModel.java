@@ -26,11 +26,11 @@ public class UsersModel {
      * 主键 生成io
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long uid;
     @Column( nullable = false , unique = true ,length = 36)
     private String userName;
-    @Column( nullable = false , length = 50)
+    @Column( nullable = false)
     private String password;
     private String realName;
     private String nickName;

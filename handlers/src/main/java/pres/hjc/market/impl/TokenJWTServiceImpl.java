@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import pres.hjc.market.dto.Token;
+import pres.hjc.market.dto.UserDetail;
 import pres.hjc.market.service.TokenService;
 
 import java.util.HashMap;
@@ -19,8 +20,8 @@ import java.util.UUID;
  * @date 2020/6/22  19:31
  * @description :
  */
-@Service
-@Primary
+//@Service
+//@Primary
 @Slf4j
 public class TokenJWTServiceImpl implements TokenService {
 
