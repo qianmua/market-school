@@ -26,7 +26,7 @@ public class IpCacheQueue {
      * get
      * @return
      */
-    protected static HashMap<String, IpCacheEntity> getIpCache() {
+    protected HashMap<String, IpCacheEntity> getIpCache() {
         return ipCache;
     }
 
@@ -34,7 +34,7 @@ public class IpCacheQueue {
      * set new Value
      * @param ipCache this has map
      */
-    protected static void setIpCache(HashMap<String, IpCacheEntity> ipCache) {
+    protected void setIpCache(HashMap<String, IpCacheEntity> ipCache) {
         //
         IpCacheQueue.ipCache = ipCache;
     }
@@ -43,21 +43,19 @@ public class IpCacheQueue {
      * put
      * @param ip
      */
-    protected static boolean putIp(String ip , boolean locked){
+    protected boolean putIp(String ip , boolean locked){
         IpCacheEntity value = getValue(ip);
         if (value != null){
             value.setSize(value.getSize()+1);
             if (!locked){
                 value.setStartTime(-1L).setLocked(false);
             }else {
-                value.setSize(value.getSize()+1)
-                        .setStartTime(PublicTools.getLocalTime())
-                        .setLocked(true);
+                value.setStartTime(PublicTools.getLocalTime()).setLocked(true);
             }
             ipCache.put(ip,value);
-
+        }else {
+            ipCache.put(ip,new IpCacheEntity(0, -1L));
         }
-        ipCache.put(ip,new IpCacheEntity(0, -1L));
         return true;
     }
 
@@ -66,8 +64,8 @@ public class IpCacheQueue {
      * @param ip
      * @return
      */
-    protected static IpCacheEntity getValue(String ip){
-        if (!ipIsEmpty(ip)){
+    protected IpCacheEntity getValue(String ip){
+        if (ipIsEmpty(ip)){
             return null;
         }
         return ipCache.get(ip);
@@ -78,7 +76,7 @@ public class IpCacheQueue {
      * @param ip
      * @return
      */
-    protected static Long getEndTime(String ip){
+    protected Long getEndTime(String ip){
         IpCacheEntity value = getValue(ip);
         if (value!= null){
             return value.getStartTime();
@@ -90,9 +88,9 @@ public class IpCacheQueue {
      * 当前 ip 是否存在cache
      * @return t f
      */
-    protected static boolean ipIsEmpty(String ip){
+    protected boolean ipIsEmpty(String ip){
         if (!StringUtils.isEmpty(ip)){
-            return ipCache.containsKey(ip);
+            return !ipCache.containsKey(ip);
         }
         return false;
     }
@@ -103,7 +101,7 @@ public class IpCacheQueue {
      * @return
      */
     @Deprecated
-    protected static boolean deleteKey(String ip,Integer max){
+    protected boolean deleteKey(String ip,Integer max){
         if (!StringUtils.isEmpty(ip)){
             if (!ipCache.containsKey(ip)){
                 return ipCache.remove(ip, null);
@@ -117,7 +115,7 @@ public class IpCacheQueue {
      * @param ip
      * @return
      */
-    protected static boolean deleteKey(String ip){
+    protected boolean deleteKey(String ip){
         if (ipIsEmpty(ip)){
             ipCache.remove(ip);
             return true;

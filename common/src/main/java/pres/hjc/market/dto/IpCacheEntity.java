@@ -4,6 +4,7 @@ package pres.hjc.market.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ import java.io.Serializable;
  * @description : dto ip cache
  */
 @Accessors(chain = true)
+@ToString
 public class IpCacheEntity implements Serializable {
 
     private static final long serialVersionUID = 6103498266008037902L;

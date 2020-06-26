@@ -38,7 +38,6 @@ public class IpCacheOptionTools extends IpCacheQueue {
      */
     public boolean addIpCache(HttpServletRequest request){
         String ip = getLockIp(request);
-        System.out.println("--------->"+ip);
         IpCacheEntity value = getValue(ip);
         if (value!= null){
             if (!value.isLocked()){
@@ -51,6 +50,8 @@ public class IpCacheOptionTools extends IpCacheQueue {
             /*if (isEndLock(request)){
                 return deleteKey(ip);
             }*/
+        }else {
+            return putIp(ip , false);
         }
         return false;
     }

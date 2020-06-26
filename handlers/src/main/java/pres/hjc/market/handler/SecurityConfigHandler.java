@@ -69,9 +69,11 @@ public class SecurityConfigHandler {
                 boolean locked = ipCacheOptionTools.isLocked(httpServletRequest);
                 if (!locked){
                     ipCacheOptionTools.addIpCache(httpServletRequest);
-                    log.info("locked -> num");
                 }else {
-                    UserDetail detail = UserUtil.getLoginUsers();
+                    // 不用 从 ip 登录 中 得到 值
+                    // 未登录呐
+                    // 直接 锁定 cookie 就可以了
+                    /*UserDetail detail = UserUtil.getLoginUsers();
                     if (ipCacheOptionTools.isEndLock(httpServletRequest)){
                         ipCacheOptionTools.deleteCache(httpServletRequest);
                         if (detail != null){
@@ -87,7 +89,7 @@ public class SecurityConfigHandler {
                         detail.setStatus(UserStatusEnum.LOCKDE.getStatus());
 //                        userDetailsManager.updateUser(detail);
                         log.warn("user -> locked");
-                    }
+                    }*/
                 }
             }else {
                 msg = exception.getMessage();
