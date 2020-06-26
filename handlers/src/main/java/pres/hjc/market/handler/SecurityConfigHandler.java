@@ -1,5 +1,6 @@
 package pres.hjc.market.handler;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import pres.hjc.market.common.CommonMsg;
 import pres.hjc.market.dto.Token;
+import pres.hjc.market.global.tools.IpCacheOptionTools;
 import pres.hjc.market.global.tools.ResponseTools;
 import pres.hjc.market.dto.UserDetail;
 import pres.hjc.market.service.TokenService;
@@ -24,10 +26,13 @@ import pres.hjc.market.service.TokenService;
  * @description :
  */
 @Configuration
+@Slf4j
 public class SecurityConfigHandler {
 
     @Autowired
     private TokenService tokenService;
+    @Autowired
+    private IpCacheOptionTools ipCacheOptionTools;
 
     /**
      * 登录成功 返回token
@@ -38,7 +43,6 @@ public class SecurityConfigHandler {
         return (httpServletRequest, httpServletResponse, authentication) -> {
             //user
             UserDetail details = (UserDetail) authentication.getPrincipal();
-
             // 根据user 生成token
             Token token = tokenService.saveToken(details);
 
@@ -57,10 +61,19 @@ public class SecurityConfigHandler {
             String msg = "";
             if (exception instanceof BadCredentialsException){
                 msg = "密码错误";
+                boolean locked = ipCacheOptionTools.isLocked(httpServletRequest);
+                if (!locked){
+                    ipCacheOptionTools.addIpCache(httpServletRequest);
+                    log.info("locked");
+                }else {
+                    if (ipCacheOptionTools.isEndLock(httpServletRequest)){
+                        ipCacheOptionTools.deleteCache(httpServletRequest);
+                        log.info("locked");
+                    }
+                }
             }else {
                 msg = exception.getMessage();
             }
-
             // return info
             CommonMsg commonMsg = new CommonMsg();
             commonMsg.setMessage(msg).setCode(HttpStatus.UNAUTHORIZED.value());

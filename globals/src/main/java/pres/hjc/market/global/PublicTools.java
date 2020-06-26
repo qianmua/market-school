@@ -8,4 +8,12 @@ package pres.hjc.market.global;
  * @description :
  */
 public final class PublicTools {
+
+    /**
+     * 得到当前时间戳
+     * @return time
+     */
+    public static Long getLocalTime(){
+        return System.currentTimeMillis();
+    }
 }
