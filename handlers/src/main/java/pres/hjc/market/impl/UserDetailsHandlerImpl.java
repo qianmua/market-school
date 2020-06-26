@@ -2,6 +2,7 @@ package pres.hjc.market.impl;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
@@ -27,6 +28,7 @@ import java.util.List;
  * @description : user service
  */
 @Service
+@Primary
 public class UserDetailsHandlerImpl implements UserDetailsService {
 
     @Autowired

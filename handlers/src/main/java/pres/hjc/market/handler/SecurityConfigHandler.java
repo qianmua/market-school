@@ -6,16 +6,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import pres.hjc.market.common.CommonMsg;
 import pres.hjc.market.dto.Token;
+import pres.hjc.market.global.status.UserStatusEnum;
 import pres.hjc.market.global.tools.IpCacheOptionTools;
 import pres.hjc.market.global.tools.ResponseTools;
 import pres.hjc.market.dto.UserDetail;
 import pres.hjc.market.service.TokenService;
+import pres.hjc.market.tools.UserUtil;
 
 
 /**
@@ -64,11 +69,24 @@ public class SecurityConfigHandler {
                 boolean locked = ipCacheOptionTools.isLocked(httpServletRequest);
                 if (!locked){
                     ipCacheOptionTools.addIpCache(httpServletRequest);
-                    log.info("locked");
+                    log.info("locked -> num");
                 }else {
+                    UserDetail detail = UserUtil.getLoginUsers();
                     if (ipCacheOptionTools.isEndLock(httpServletRequest)){
                         ipCacheOptionTools.deleteCache(httpServletRequest);
-                        log.info("locked");
+                        if (detail != null){
+                            detail.setStatus(UserStatusEnum.UN_LOCKDE.getStatus());
+//                            userDetailsManager.updateUser(detail);
+                            // 新的 用户
+//                            new UsernamePasswordAuthenticationToken();
+//                            SecurityContextHolder.getContext().setAuthentication();
+                        }
+                        log.info("unlocked");
+                    }
+                    if (detail != null){
+                        detail.setStatus(UserStatusEnum.LOCKDE.getStatus());
+//                        userDetailsManager.updateUser(detail);
+                        log.warn("user -> locked");
                     }
                 }
             }else {

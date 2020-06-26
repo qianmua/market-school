@@ -3,7 +3,6 @@ package pres.hjc.market.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -16,7 +15,6 @@ import java.io.Serializable;
  * @date 2020/6/26  18:52
  * @description : dto ip cache
  */
-@Builder
 @Accessors(chain = true)
 public class IpCacheEntity implements Serializable {
 

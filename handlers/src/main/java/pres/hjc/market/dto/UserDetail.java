@@ -12,6 +12,7 @@ import pres.hjc.market.po.UsersModel;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -89,7 +90,7 @@ public class UserDetail extends UsersModel implements UserDetails {
      */
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !Objects.equals(getStatus(), UserStatusEnum.LOCKDE.getStatus());
     }
 
     /**
