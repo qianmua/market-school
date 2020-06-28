@@ -50,11 +50,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         //基于token 不用session
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        // 基于session 就不用 配置
+        //
+        //http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
                 .antMatchers(SecurityVal.antMatchers).permitAll().anyRequest().authenticated();
-
         // 添加 handler
         http.formLogin()
                 .loginPage("/home/login.html")

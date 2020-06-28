@@ -61,6 +61,9 @@ public class UserDetailsHandlerImpl implements UserDetailsService {
         // 属性 赋值
         BeanUtils.copyProperties(usersModel,detail);
         // 查询 权限
+        // 修改后 不知 立即生效
+        // 重新 登录
+        // 或者 token
         List<MenuModel> menuModels = menuService.queryAll();
         // set
         detail.setMenuModels(menuModels);

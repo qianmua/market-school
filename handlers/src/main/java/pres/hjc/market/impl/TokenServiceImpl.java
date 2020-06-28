@@ -60,7 +60,6 @@ public class TokenServiceImpl implements TokenService {
     @Override
     public boolean removeToken(String token) {
         // 清理掉 缓存
-
         return false;
     }
 
@@ -72,7 +71,6 @@ public class TokenServiceImpl implements TokenService {
     private void cacheUserSetting(UserDetail userDetail){
         userDetail.setLoginLong(System.currentTimeMillis());
         userDetail.setExpireTime(userDetail.getLoginLong() + (expireSeconds * 1000) );
-
         // 缓存 到 redis
 
     }
