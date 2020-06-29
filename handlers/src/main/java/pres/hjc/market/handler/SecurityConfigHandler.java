@@ -15,6 +15,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import pres.hjc.market.common.CommonMsg;
 import pres.hjc.market.dto.Token;
+import pres.hjc.market.filter.TokenFilter;
 import pres.hjc.market.global.status.UserStatusEnum;
 import pres.hjc.market.global.tools.IpCacheOptionTools;
 import pres.hjc.market.global.tools.ResponseTools;
@@ -132,7 +133,8 @@ public class SecurityConfigHandler {
             commonMsg.setMessage("退出成功").setCode(HttpStatus.OK.value());
             // 退出成功 清理 token
             // 从过滤器中 取出token
-            tokenService.removeToken("");
+            String token = TokenFilter.getToken(req);
+            tokenService.removeToken(token);
             // 返回状态码
             ResponseTools.responseJson(res,HttpStatus.OK.value() , commonMsg);
 

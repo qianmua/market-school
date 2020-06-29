@@ -72,7 +72,7 @@ public class TokenFilter extends OncePerRequestFilter {
      * @param request
      * @return
      */
-    private static String getToken(HttpServletRequest request){
+    public static String getToken(HttpServletRequest request){
         // 参数里面获得
         String token = request.getParameter(TOKEN_KEY);
         if (StringUtils.isEmpty(token)){

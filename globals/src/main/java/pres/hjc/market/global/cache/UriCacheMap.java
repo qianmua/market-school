@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class UriCacheMap {
 
-    private static Map<String , String > uriCache = new HashMap<>();
+    private static Map<String , String > uriCache = new HashMap<>(10);
 
     /**
      * put
@@ -58,6 +58,14 @@ public class UriCacheMap {
      */
     public static Set getValue(){
         return new HashSet<>(uriCache.values());
+    }
+
+    /**
+     * 空 map
+     * @return
+     */
+    public static boolean isEmpityMap(){
+        return uriCache.size() == 0;
     }
 
 }

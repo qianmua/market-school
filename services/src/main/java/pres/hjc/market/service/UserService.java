@@ -1,5 +1,6 @@
 package pres.hjc.market.service;
 
+import pres.hjc.market.common.CommonMsg;
 import pres.hjc.market.po.UsersModel;
 
 /**
@@ -14,4 +15,6 @@ public interface UserService {
     void deleteUser(Long id);
 
     UsersModel queryByUserName(String userName);
+
+    CommonMsg updateUserInfo(UsersModel usersModel);
 }
