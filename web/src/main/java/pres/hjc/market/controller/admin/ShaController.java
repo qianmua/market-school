@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pres.hjc.market.global.SHAUtil;
+import pres.hjc.market.global.cache.UriCacheMap;
 
 /**
  * @author HJC
@@ -33,13 +34,17 @@ public class ShaController {
         return "admin/md5";
     }
 
-
     @PostMapping("/pages")
     @PreAuthorize("hasAuthority('sys:url:create')")
     public String md(String md , Model model){
         String str = SHAUtil.encreptUrl(md);
         model.addAttribute("origin" , md);
         model.addAttribute("md" , str);
+
+        // save hash
+        UriCacheMap.putValue(md , str);
+
+
         return "admin/md5";
     }
 

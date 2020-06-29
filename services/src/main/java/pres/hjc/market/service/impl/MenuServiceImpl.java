@@ -2,11 +2,13 @@ package pres.hjc.market.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pres.hjc.market.mapper.MenuMapping;
 import pres.hjc.market.po.MenuModel;
 import pres.hjc.market.service.MenuService;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author HJC
@@ -27,5 +29,14 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<MenuModel> queryAll() {
         return menuMapping.findAll();
+    }
+
+    @Override
+    @Transactional( rollbackFor = RuntimeException.class)
+    public void deleteMenuById(Long id) {
+        Optional<MenuModel> byId = menuMapping.findById(id);
+        if (byId.isPresent()){
+            menuMapping.deleteById(id);
+        }
     }
 }

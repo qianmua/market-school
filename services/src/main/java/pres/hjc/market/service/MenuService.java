@@ -17,4 +17,6 @@ public interface MenuService {
      * @return
      */
     List<MenuModel> queryAll();
+
+    void deleteMenuById(Long id);
 }
