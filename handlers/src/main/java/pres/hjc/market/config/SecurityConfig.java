@@ -7,8 +7,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.token.KeyBasedPersistenceTokenService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -40,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private LogoutSuccessHandler logoutSuccessHandler;
     @Autowired
     private UserDetailsService userDetailsService;
-//    @Autowired
-//    private TokenFilter tokenFilter;
+    @Autowired
+    private TokenFilter tokenFilter;
 
 
     @Override
@@ -77,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 拦截 请求 得到token
         // 对token 校验
-//        http.addFilterBefore(tokenFilter , UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(tokenFilter , UsernamePasswordAuthenticationFilter.class);
     }
 
     /**

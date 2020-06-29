@@ -1,6 +1,7 @@
 package pres.hjc.market.filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,6 +26,7 @@ import java.io.IOException;
  * @description : token filter
  */
 @Component
+@Primary
 public class TokenFilter extends OncePerRequestFilter {
 
     private static final String TOKEN_KEY = "token";
