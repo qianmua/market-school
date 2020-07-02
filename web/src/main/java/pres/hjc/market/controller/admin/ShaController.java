@@ -16,7 +16,7 @@ import pres.hjc.market.global.cache.UriCacheMap;
  * @date 2020/6/20  20:03
  * @description :
  */
-@Controller
+@Controller( value = "adminShaController")
 @RequestMapping("/admin/md5")
 public class ShaController {
 

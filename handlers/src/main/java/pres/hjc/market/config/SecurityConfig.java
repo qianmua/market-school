@@ -75,6 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 拦截 请求 得到token
         // 对token 校验
+        // 老报 error
+        //。。。。
         http.addFilterBefore(tokenFilter , UsernamePasswordAuthenticationFilter.class);
     }
 

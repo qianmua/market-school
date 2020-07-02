@@ -14,7 +14,7 @@ import pres.hjc.market.global.cache.UriCacheMap;
  * @date 2020/6/29  14:54
  * @description :
  */
-@RestController
+@RestController(value = "homeShaController")
 @RequestMapping("/info")
 public class ShaController {
 

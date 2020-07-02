@@ -17,6 +17,7 @@ public final class CookieTools {
 
     /**
      * 设置 Cookie（生成时间为1天）
+     * default
      * @param name 名称
      * @param value 值
      */

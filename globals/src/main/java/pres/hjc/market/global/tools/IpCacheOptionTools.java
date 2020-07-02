@@ -98,7 +98,7 @@ public class IpCacheOptionTools extends IpCacheQueue {
      * @param request
      * @return
      */
-    private String getLockIp(HttpServletRequest request){
+    public String getLockIp(HttpServletRequest request){
         return ApiResponse.analysisIp(request);
     }
 

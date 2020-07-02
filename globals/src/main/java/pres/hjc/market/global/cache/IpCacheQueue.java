@@ -25,7 +25,7 @@ public class IpCacheQueue {
      * get
      * @return
      */
-    protected HashMap<String, IpCacheEntity> getIpCache() {
+    public HashMap<String, IpCacheEntity> getIpCache() {
         return ipCache;
     }
 
@@ -63,7 +63,7 @@ public class IpCacheQueue {
      * @param ip
      * @return
      */
-    protected IpCacheEntity getValue(String ip){
+    public IpCacheEntity getValue(String ip){
         if (ipIsEmpty(ip)){
             return null;
         }
