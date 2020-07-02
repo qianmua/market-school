@@ -3,6 +3,7 @@ package pres.hjc.market.filter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.stereotype.Component;
 import pres.hjc.market.dto.IpCacheEntity;
@@ -65,8 +66,10 @@ public class IpCacheLockedFilter implements Filter {
             // 存在 cookie
 
             // 最终 处理
-            //log.info(" 锁定 抛出 异常-> ");
-            //throw new LockedException("after 10 min again.");
+            log.info(" 锁定 抛出 异常-> ");
+//            throw new BadCredentialsException("after 10 min again.");
+            // 让他走吧。。
+            filterChain.doFilter(servletRequest, servletResponse);
         }else {
             log.info("un locked..");
             filterChain.doFilter(servletRequest, servletResponse);

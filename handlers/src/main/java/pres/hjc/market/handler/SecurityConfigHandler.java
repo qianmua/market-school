@@ -68,9 +68,14 @@ public class SecurityConfigHandler {
             if (exception instanceof BadCredentialsException){
                 msg = "密码错误";
                 boolean locked = ipCacheOptionTools.isLocked(httpServletRequest);
+                System.out.println(locked);
+                System.out.println(ipCacheOptionTools.getIpCache());
                 if (!locked){
-                    ipCacheOptionTools.addIpCache(httpServletRequest);
+                    boolean b = ipCacheOptionTools.addIpCache(httpServletRequest);
+                    /// 奇怪
+                    System.out.println(b);
                 }else {
+                    msg = "locked after 10 min again..";
                     // 不用 从 ip 登录 中 得到 值
                     // 未登录呐
                     // 直接 锁定 cookie 就可以了

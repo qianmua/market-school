@@ -61,8 +61,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(successHandler)
                 .failureHandler(failureHandler)
                 .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(entryPoint);
+                .exceptionHandling();
+                //  注意 当前 未登录 会 返回 json 串
+                //过滤掉 页面 转发
+//                .authenticationEntryPoint(entryPoint);
 
         http.logout()
                 .logoutUrl("/logout.html")
