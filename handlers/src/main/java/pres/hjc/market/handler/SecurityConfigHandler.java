@@ -68,12 +68,11 @@ public class SecurityConfigHandler {
             if (exception instanceof BadCredentialsException){
                 msg = "密码错误";
                 boolean locked = ipCacheOptionTools.isLocked(httpServletRequest);
-                System.out.println(locked);
-                System.out.println(ipCacheOptionTools.getIpCache());
+//                System.out.println(locked);
+//                System.out.println(ipCacheOptionTools.getIpCache());
+//                log.info(ipCacheOptionTools.getIpCache().toString());
                 if (!locked){
                     boolean b = ipCacheOptionTools.addIpCache(httpServletRequest);
-                    /// 奇怪
-                    System.out.println(b);
                 }else {
                     msg = "locked after 10 min again..";
                     // 不用 从 ip 登录 中 得到 值
