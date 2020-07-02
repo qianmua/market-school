@@ -1,5 +1,6 @@
 package pres.hjc.market.global.status;
 
+
 /**
  * @author HJC
  * @version 1.0

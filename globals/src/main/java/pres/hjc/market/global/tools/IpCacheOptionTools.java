@@ -1,13 +1,11 @@
 package pres.hjc.market.global.tools;
 
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import pres.hjc.market.dto.IpCacheEntity;
 import pres.hjc.market.global.ApiResponse;
 import pres.hjc.market.global.cache.IpCacheQueue;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Time;
 
 /**
  * @author HJC

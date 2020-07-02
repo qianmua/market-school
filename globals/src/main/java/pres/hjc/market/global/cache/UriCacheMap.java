@@ -12,7 +12,7 @@ import java.util.Set;
  * @date 2020/6/20  20:17
  * @description : 短地址 加密
  */
-public class UriCacheMap {
+public final class UriCacheMap {
 
     private static Map<String , String > uriCache = new HashMap<>(10);
 

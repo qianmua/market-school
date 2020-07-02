@@ -1,8 +1,12 @@
 package pres.hjc.market.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import pres.hjc.market.filter.IpCacheLockedFilter;
 
 /**
  * @author HJC
@@ -14,6 +18,26 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcSetConfig implements WebMvcConfigurer {
 
+    @Autowired
+    private IpCacheLockedFilter lockedFilter;
+
+    /**
+     * filter
+     * //如果有多个Filter，
+     * 再写一个public FilterRegistrationBean registerOtherFilter(){...}。
+     *
+     * @return
+     */
+    @Bean
+    public FilterRegistrationBean<IpCacheLockedFilter> registrationBean(){
+        FilterRegistrationBean<IpCacheLockedFilter> bean = new FilterRegistrationBean<>();
+        bean.setFilter(lockedFilter);
+        bean.addUrlPatterns("/*");
+        bean.setName("ipCache");
+        // 排序
+        bean.setOrder(2);
+        return bean;
+    }
 
     /**
      * 跨域
@@ -23,6 +47,7 @@ public class WebMvcSetConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**").allowedMethods("*");
     }
+
 
 
 }

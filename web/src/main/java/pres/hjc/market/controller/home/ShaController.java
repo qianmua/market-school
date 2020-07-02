@@ -1,10 +1,10 @@
 package pres.hjc.market.controller.home;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pres.hjc.market.global.cache.UriCacheMap;
 
 /**
@@ -14,7 +14,7 @@ import pres.hjc.market.global.cache.UriCacheMap;
  * @date 2020/6/29  14:54
  * @description :
  */
-@Controller
+@RestController
 @RequestMapping("/info")
 public class ShaController {
 
@@ -22,10 +22,9 @@ public class ShaController {
     public String type(@PathVariable String sha){
         if (!StringUtils.isEmpty(sha) && !UriCacheMap.isEmpityMap()){
             String value = UriCacheMap.getValue(sha);
-            return "redirect:demo?..";
-
+            return "data";
         }
-        // hash
+        // hash // 404
         return null;
     }
 }

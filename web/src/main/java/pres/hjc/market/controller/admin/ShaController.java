@@ -40,9 +40,10 @@ public class ShaController {
         String str = SHAUtil.encreptUrl(md);
         model.addAttribute("origin" , md);
         model.addAttribute("md" , str);
-
         // save hash
-        UriCacheMap.putValue(md , str);
+        String s = UriCacheMap.putValue(md, str);
+        // save
+        System.out.println(s);
 
 
         return "admin/md5";
