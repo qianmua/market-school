@@ -23,6 +23,8 @@ import pres.hjc.market.dto.UserDetail;
 import pres.hjc.market.service.TokenService;
 import pres.hjc.market.tools.UserUtil;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * @author HJC
@@ -114,15 +116,28 @@ public class SecurityConfigHandler {
     @Bean
     public AuthenticationEntryPoint authenticationEntryPoint(){
         return (req,res,authExc) -> {
-
             // 401
             // return info
-            CommonMsg commonMsg = new CommonMsg();
-            commonMsg.setMessage("请登录").setCode(HttpStatus.UNAUTHORIZED.value());
 
-            ResponseTools.responseJson(res,HttpStatus.UNAUTHORIZED.value() , commonMsg);
-
+            // ajax 验证
+            if (isAjaxRequest(req)){
+                CommonMsg commonMsg = new CommonMsg();
+                commonMsg.setMessage("请登录").setCode(HttpStatus.UNAUTHORIZED.value());
+                ResponseTools.responseJson(res,HttpStatus.UNAUTHORIZED.value() , commonMsg);
+            }else {
+                res.sendRedirect("/home/login.html");
+            }
         };
+    }
+
+    /**
+     * ajax ?
+     * @param request
+     * @return
+     */
+    private static boolean isAjaxRequest(HttpServletRequest request){
+        String header = request.getHeader("X-Requested-With");
+        return header != null && "XMLHttpRequest".equals(header);
     }
 
     /**
