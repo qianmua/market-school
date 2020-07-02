@@ -1,5 +1,7 @@
 package pres.hjc.market.controller.home;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/home")
+@Api( tags = {"home/base"})
 public class IndexController {
 
 
@@ -21,6 +24,7 @@ public class IndexController {
         return "index";
     }
 
+    @ApiOperation( value = "login" , notes = "login" , produces = "application/json")
     @GetMapping("login.html")
     public String login(){ return "home/login";}
 
