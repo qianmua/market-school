@@ -13,6 +13,6 @@ public class SecurityVal {
             "/home/**","/login",",index.html",",index",
       "/" , "/css/**" , "/favicon.ico" , "js/**" , "/fonts/**",
             "lib/**","img/**","swagger-resources/**","pages/**","/druid/**",
-            "static/**"
+            "/static/**"
     };
 }

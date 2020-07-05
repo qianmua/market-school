@@ -22,6 +22,8 @@ spring:
       ddl-auto: update
     database: mysql
     show-sql: true
+#  mvc:
+#    static-path-pattern: /static/**
 
 # token 过期时间 （俩小时）
 token:

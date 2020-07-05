@@ -42,7 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private TokenFilter tokenFilter;
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
