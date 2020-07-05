@@ -15,9 +15,9 @@ body{
 
 
 #mk-header .top-bar{
-    width: 40px;
+    height: 40px;
     line-height: 39px;
-    border: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 #mk-header .top-bar .top-bar-1{
